@@ -1,0 +1,10 @@
+*** Add Rupee Symbol To Your Website usin vqmod***
+
+------Instruction------
+
+-----upload the content of the folder "upload" to your website
+
+At admin Side:
+
+->Go to Localisation->Currencies .
+	->Add New Currency As Shown in Screenshots.

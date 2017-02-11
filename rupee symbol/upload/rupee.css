@@ -1,0 +1,17 @@
+@font-face {
+	font-family: 'Rupee Foradian';
+	src: url(Rupee_Foradian.ttf);
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+.WebRupee {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border: medium none;
+    float: none !important;
+    font-family: 'Rupee Foradian';
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}

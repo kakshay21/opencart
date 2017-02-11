@@ -1,0 +1,72 @@
+<modification>
+    <id>Indian Rupee Symbol</id>
+    <version>2.0</version>
+    <vqmver>2.4.1</vqmver>
+    <author>Generation Next</author>
+    <file path="system/library/currency.php">
+        <operation>
+            <search position="replace" offset="2"><![CDATA[if (($symbol_left) && ($format)) {]]></search>
+            <add><![CDATA[if (($symbol_left) && ($format)) {
+            if($currency=='INR')
+            $string .='<span class=\'WebRupee\'>`</span>';
+            else
+            $string .= $symbol_left;
+            }]]></add>
+        </operation>
+        <operation>
+            <search position="replace" offset="2"><![CDATA[if (($symbol_right) && ($format)) {]]></search>
+            <add><![CDATA[if (($symbol_right) && ($format)) {
+            if($currency=='INR')
+            $string .='';
+            else
+            $string .= $symbol_right;
+            }]]></add>
+        </operation>
+    </file>
+	
+	 <file path="catalog/model/checkout/order.php">
+        <operation>
+            <search position="replace"><![CDATA[$this->currency->format]]></search>
+            <add><![CDATA[$this->currency->formatV2]]></add>
+        </operation>
+        
+    </file>
+	
+	<file path="system/library/currency.php">
+        <operation>
+            <search position="before" ><![CDATA[public function convert($value, $from, $to) {]]></search>
+            <add><![CDATA[public function formatV2($number, $currency = '', $value = '', $format = true) {
+		return str_replace('`', '₹', $this->format($number, $currency, $value, $format));
+	}]]></add>
+        </operation>
+        
+    </file>
+
+    <file path="catalog/view/theme/*/template/common/currency.tpl">
+        <operation>
+            <search position="after" offset="0"><![CDATA[<?php foreach ($currencies as $currency) { ?>]]></search>
+            <add><![CDATA[<?php if($currency['code']=="INR"){$currency['symbol_left']="<span class='WebRupee'>`</span>";}?>]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+             <search position="before"><![CDATA[</head>]]></search>
+             <add><![CDATA[<link rel="stylesheet" type="text/css" href="rupee.css" />]]></add>
+        </operation>
+    </file>
+	<file path="admin/view/template/common/header.tpl">
+        <operation>
+             <search position="before"><![CDATA[</head>]]></search>
+             <add><![CDATA[<link rel="stylesheet" type="text/css" href="rupee.css" />]]></add>
+        </operation>
+    </file>
+	<file path="admin/view/template/sale/order_invoice.tpl">
+        <operation>
+             <search position="before"><![CDATA[</head>]]></search>
+             <add><![CDATA[<link rel="stylesheet" type="text/css" href="rupee.css" />]]></add>
+        </operation>
+    </file>
+	
+
+</modification>
